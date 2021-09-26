@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [data, setData] = useState([]);
-  console.log(data);
 
   const query = `
       {
@@ -16,11 +15,9 @@ function App() {
               slug
               title
               brief
-              coverImage
               dateAdded
             }
           }
-          publicationDomain
         }
       }
     `;
