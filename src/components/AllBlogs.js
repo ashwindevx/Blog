@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
+import { v4 as uuidv4 } from "uuid";
 
 const AllBlogs = ({ data }) => {
   return (
@@ -16,6 +17,7 @@ const AllBlogs = ({ data }) => {
           <BlogLink
             href={`https://ashwindev.hashnode.dev/${blog.slug}`}
             target="_blank"
+            key={uuidv4()}
           >
             <Heading>{blog.title}</Heading>
             <Brief>{blog.brief}</Brief>
