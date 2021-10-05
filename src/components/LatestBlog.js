@@ -2,23 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-const LatestBlog = ({ data }) => {
-  const date = dateFormat(data[1].dateAdded, "dddd, mmmm dS, yyyy");
-  const mainLink = `https://ashwindev.hashnode.dev/${data[1].slug}`;
+const LatestBlog = ({ data, isLoading }) => {
+  const date = dateFormat(data?.[0]?.dateAdded, "dddd, mmmm dS, yyyy");
+  const mainLink = `https://ashwindev.hashnode.dev/${data?.[0]?.slug}`;
 
   return (
     <Container>
-      <BlogLink href={mainLink} target="_blank">
-        <Heading>{data[1].title}</Heading>
-        <Brief>{data[1].brief}</Brief>
-        <p style={{ marginBottom: "2em" }}>{date}</p>
-      </BlogLink>
+      {isLoading ? (
+        <SkeletonTheme color="#171717" highlightColor="#202020">
+          <Skeleton style={{ marginBottom: ".75em" }} height={25} />
+          <Skeleton count={3} />
+        </SkeletonTheme>
+      ) : (
+        <BlogLink href={mainLink} target="_blank">
+          <Heading>{data[0]?.title}</Heading>
+          <Brief>{data[0]?.brief}</Brief>
+          <p style={{ fontSize: "var(--sm-para)" }}>{date}</p>
+        </BlogLink>
+      )}
       <Link to="/blogs">
-        <MoreBlogLink href="#">
+        <MoreBlogLink>
           More Blogs <Arrow>&#8594;</Arrow>
         </MoreBlogLink>
       </Link>
+      <Line></Line>
     </Container>
   );
 };
@@ -33,6 +42,7 @@ const Heading = styled.p`
   font-size: var(--para);
   font-weight: var(--med);
   margin: 0 0 4px 0;
+  color: var(--green);
 `;
 
 const BlogLink = styled.a`
@@ -42,6 +52,7 @@ const BlogLink = styled.a`
   &:hover {
     ${Heading} {
       text-decoration: underline;
+      text-underline-position: under;
     }
   }
 `;
@@ -57,12 +68,22 @@ const Arrow = styled.span`
 
 const MoreBlogLink = styled.p`
   text-decoration: underline;
+  text-underline-position: under;
   color: var(--light);
   font-weight: var(--med);
+  margin-top: 1em;
+  display: inline-block;
 
   &:hover {
     ${Arrow} {
       padding-left: 0.25em;
     }
   }
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #333;
+  margin: 2em 0;
 `;

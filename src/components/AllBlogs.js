@@ -1,10 +1,12 @@
 import React from "react";
+import Footer from "./Footer.js";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import { v4 as uuidv4 } from "uuid";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-const AllBlogs = ({ data }) => {
+const AllBlogs = ({ data, isLoading }) => {
   return (
     <div>
       <Link to="/">
@@ -12,20 +14,46 @@ const AllBlogs = ({ data }) => {
           <Arrow>&#8592;</Arrow> Back
         </HomeLink>
       </Link>
-      {data.map((blog) => {
-        return (
-          <BlogLink
-            href={`https://ashwindev.hashnode.dev/${blog.slug}`}
-            target="_blank"
-            key={uuidv4()}
-          >
-            <Heading>{blog.title}</Heading>
-            <Brief>{blog.brief}</Brief>
-            <p>{dateFormat(blog.dateAdded, "dddd, mmmm dS, yyyy")}</p>
-            <Line></Line>
-          </BlogLink>
-        );
-      })}
+      {isLoading ? (
+        <div>
+          <SkeletonContainer>
+            <SkeletonTheme color="#171717" highlightColor="#202020">
+              <Skeleton style={{ marginBottom: "1em" }} height={25} />
+              <Skeleton count={3} />
+            </SkeletonTheme>
+          </SkeletonContainer>
+          <SkeletonContainer style={{ marginTop: "1em" }}>
+            <SkeletonTheme color="#171717" highlightColor="#202020">
+              <Skeleton style={{ marginBottom: "1em" }} height={25} />
+              <Skeleton count={3} />
+            </SkeletonTheme>
+          </SkeletonContainer>
+          <SkeletonContainer style={{ marginTop: "1em" }}>
+            <SkeletonTheme color="#171717" highlightColor="#202020">
+              <Skeleton style={{ marginBottom: "1em" }} height={25} />
+              <Skeleton count={3} />
+            </SkeletonTheme>
+          </SkeletonContainer>
+        </div>
+      ) : (
+        data.map((blog) => {
+          return (
+            <BlogLink
+              href={`https://ashwindev.hashnode.dev/${blog.slug}`}
+              target="_blank"
+              key={uuidv4()}
+            >
+              <Heading>{blog.title}</Heading>
+              <Brief>{blog.brief}</Brief>
+              <p style={{ fontSize: "var(--sm-para)" }}>
+                {dateFormat(blog.dateAdded, "dddd, mmmm dS, yyyy")}
+              </p>
+              <Line></Line>
+            </BlogLink>
+          );
+        })
+      )}
+      <Footer />
     </div>
   );
 };
@@ -36,6 +64,7 @@ const Heading = styled.p`
   font-size: var(--para);
   font-weight: var(--med);
   margin: 0 0 4px 0;
+  color: var(--green);
 `;
 
 const Brief = styled.p`
@@ -49,9 +78,11 @@ const Arrow = styled.span`
 
 const HomeLink = styled.p`
   text-decoration: underline;
+  text-underline-position: under;
   color: var(--light);
   font-weight: var(--med);
   margin-bottom: 2em;
+  display: inline-block;
 
   &:hover {
     ${Arrow} {
@@ -62,11 +93,13 @@ const HomeLink = styled.p`
 
 const BlogLink = styled.a`
   text-decoration: none;
+  text-underline-position: under;
   color: var(--white);
 
   &:hover {
     ${Heading} {
       text-decoration: underline;
+      text-underline-position: under;
     }
   }
 `;
@@ -76,4 +109,8 @@ const Line = styled.div`
   height: 1px;
   background-color: #333;
   margin: 1em 0;
+`;
+
+const SkeletonContainer = styled.div`
+  margin-bottom: 2em;
 `;

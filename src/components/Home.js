@@ -1,8 +1,9 @@
 import React from "react";
 import LatestBlog from "./LatestBlog";
+import Footer from "./Footer.js";
 import styled from "styled-components";
 
-const Home = ({ data }) => {
+const Home = ({ data, isLoading }) => {
   return (
     <div>
       <MainHead href="https://twitter.com/ashwindevx" target="_blank">
@@ -23,7 +24,8 @@ const Home = ({ data }) => {
       <Question>When do the blogs come out?</Question>
       <Para>Weekly Blogs. Every Sunday I’ll post a Blog.</Para>
       <Question>Latest Blog👇🏻</Question>
-      <LatestBlog data={data} />
+      <LatestBlog data={data} isLoading={isLoading} />
+      <Footer />
     </div>
   );
 };
@@ -33,7 +35,7 @@ export default Home;
 const MainHead = styled.a`
   font-size: var(--head);
   font-weight: var(--semi);
-  color: var(--white);
+  color: var(--green);
   text-decoration: none;
   cursor: pointer;
 `;

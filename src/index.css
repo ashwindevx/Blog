@@ -3,7 +3,8 @@
 :root {
   --primary: black;
   --light: white;
-  --gray: #bdbdbd;
+  --gray: #cfcfcf;
+  --green: #1fd38e;
 
   --reg: 400;
   --med: 500;
@@ -11,6 +12,7 @@
 
   --head: 1.5em;
   --para: 1em;
+  --sm-para: 0.875em;
 }
 
 body {
