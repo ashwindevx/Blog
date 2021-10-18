@@ -42,12 +42,17 @@ const Heading = styled.p`
   font-size: var(--para);
   font-weight: var(--med);
   margin: 0 0 4px 0;
-  color: var(--green);
+
+  color: #00b2ff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #00b2ff 0%, #0085ff 83.94%);
 `;
 
 const BlogLink = styled.a`
   text-decoration: none;
   color: var(--white);
+  transition: all 0.25s ease-in-out;
 
   &:hover {
     ${Heading} {

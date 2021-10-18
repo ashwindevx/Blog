@@ -29,4 +29,8 @@ const Social = styled.a`
   color: var(--green);
   font-weight: var(--med);
   display: inline-block;
+  color: #00b2ff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #00b2ff 0%, #0085ff 83.94%);
 `;

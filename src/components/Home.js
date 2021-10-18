@@ -7,7 +7,7 @@ const Home = ({ data, isLoading }) => {
   return (
     <div>
       <MainHead href="https://twitter.com/ashwindevx" target="_blank">
-        @ashwindevx👋🏻
+        @ashwindevx
       </MainHead>
       <Intro>Hey, I’m Ashwin Chauhan. From Meerut living in Mohali.</Intro>
       <Question>Why am I writing Blogs?</Question>
@@ -23,7 +23,7 @@ const Home = ({ data, isLoading }) => {
       </Para>
       <Question>When do the blogs come out?</Question>
       <Para>Weekly Blogs. Every Sunday I’ll post a Blog.</Para>
-      <Question>Latest Blog👇🏻</Question>
+      <Question style={{ marginTop: "2em" }}>Latest Blog👇🏻</Question>
       <LatestBlog data={data} isLoading={isLoading} />
       <Footer />
     </div>
@@ -35,21 +35,26 @@ export default Home;
 const MainHead = styled.a`
   font-size: var(--head);
   font-weight: var(--semi);
-  color: var(--green);
   text-decoration: none;
   cursor: pointer;
+  color: #00b2ff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #00b2ff 0%, #0085ff 83.94%);
 `;
 
 const Intro = styled.p`
   font-size: var(--para);
   font-weight: var(--med);
-  margin: 10px 0 20px 0;
+  margin: 12px 0 20px 0;
+  cursor: default;
 `;
 
 const Question = styled.p`
   font-size: var(--para);
   font-weight: var(--med);
   margin: 0 0 4px 0;
+  cursor: default;
 `;
 
 const Para = styled.p`
@@ -57,4 +62,5 @@ const Para = styled.p`
   font-weight: var(--reg);
   color: var(--gray);
   margin: 0 0 20px 0;
+  cursor: default;
 `;
