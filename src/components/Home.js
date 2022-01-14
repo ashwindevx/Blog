@@ -22,7 +22,7 @@ const Home = ({ data, isLoading }) => {
         or Reading, etc.
       </Para>
       <Question>When do the blogs come out?</Question>
-      <Para>Weekly Blogs. Every Sunday I’ll post a Blog.</Para>
+      <Para>Weekly Blogs. Every Friday I’ll post a Blog.</Para>
       <Question style={{ marginTop: "2em" }}>Latest Blog👇🏻</Question>
       <LatestBlog data={data} isLoading={isLoading} />
       <Footer />
